@@ -18,10 +18,12 @@ class Board(Resource):
 
     def get(self, board_id):
         """
+        # The Board:
+        # 123
+        # 456
+        # 789
         :param board_id: the id of the board. There should be one for each player.
         :return: a bitboard representing the move state of the players board.
-        The 9th bit (most significant) is the top leftmost square, and the least
-        significant bit is the bottom rightmost square.
         """
         if len(models.boards) > board_id:
             return models.boards[board_id]
