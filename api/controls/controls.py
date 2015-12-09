@@ -1,11 +1,14 @@
 import api.constants as constants
+import abc
 
 
 class Move(object):
 
+    __metaclass__ = abc.ABCMeta
+
     def __init__(self, proposed_move, boards):
         """
-        :param proposed_move; A bitboard representing a move submitted by the player.
+        :param proposed_move; A bitboard representing a move submitted by the players.
         :return a bitboard representing a valid move or false if there is no valid move.
         """
         self._proposed_move = proposed_move

@@ -22,7 +22,7 @@ class Board(Resource):
         # 123
         # 456
         # 789
-        :param board_id: the id of the board. There should be one for each player.
+        :param board_id: the id of the board. There should be one for each players.
         :return: a bitboard representing the move state of the players board.
         """
         if len(models.boards) > board_id:
@@ -40,7 +40,7 @@ class Board(Resource):
             return {'message': 'Required POST fields missing'}
         try:
             board_id = int(args['board_id'])
-            # the player's board information exists and can be changed.
+            # the players's board information exists and can be changed.
             if len(models.boards) > board_id:
                 models.boards[board_id] = args['bitboard']
                 return models.boards[board_id]

@@ -2,5 +2,5 @@
 # about SQL fields.
 
 # The number being stored below is a bitboard representing the board state of
-# the player.
+# the players.
 boards = []
