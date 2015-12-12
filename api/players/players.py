@@ -11,4 +11,20 @@ class Player(object):
         """
         :return: a Player object (represents the state of the player).
         """
-        self._board = board()
+        self._board = board.Board()
+        self._turn = False
+
+    @property
+    def turn(self):
+        """
+        :return: whether it is currently this player's turn.
+        """
+        return self._turn
+
+    @turn.setter
+    def turn(self, new_turn):
+        self._turn = new_turn
+
+    @property
+    def board(self):
+        return self._board
