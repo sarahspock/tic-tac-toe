@@ -7,9 +7,10 @@ class Board(object):
 
     __metaclass__ = abc.ABCMeta
 
-    def __init__(self):
+    def __init__(self, game=None):
         self._bitmap = 0x0
         models.boards.append(self)
+        self._game = game
 
     @property
     def bitmap(self):
@@ -24,3 +25,11 @@ class Board(object):
         if self.bitmap & constants.VALID_SPACES == self.bitmap:
             return True
         return False
+
+    @property
+    def game(self):
+        """
+        :return: The game associated with this board.
+        """
+        return self._game
+

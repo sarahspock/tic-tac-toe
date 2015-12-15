@@ -1,8 +1,10 @@
 from flask import Blueprint, session
 from flask_restful import Api, Resource, marshal_with, reqparse
 import models
+import abc
+import api.controllers as controllers
 
-board = Blueprint('boards', __name__, url_prefix='/v1.0')
+board = Blueprint('boards', __name__, url_prefix='/v1.0/boards')
 api = Api(board)
 
 parser = reqparse.RequestParser()
@@ -10,31 +12,16 @@ parser.add_argument('bitboard')
 parser.add_argument('board_id')
 
 
-class Board(Resource):
+class Board(controllers.Base):
     """
     You can also post a new board state after a move has been completed.
     :return:  JSON representing the board state for each players
     """
 
-    def get(self, board_id):
-        """
-        # The Board:
-        # 123
-        # 456
-        # 789
-        :param board_id: the id of the board. There should be one for each players.
-        :return: a bitboard representing the move state of the players board.
-        """
-        if len(models.boards) > board_id:
-            return models.boards[board_id]
-        else:
-            return {'message': 'Invalid board ID'}
-
     def post(self):
         """
         :return: The bitboard value that was posted.
         """
-
         args = parser.parse_args()
         if 'board_id' not in args or 'bitboard' not in args:
             return {'message': 'Required POST fields missing'}
@@ -49,24 +36,27 @@ class Board(Resource):
         except ValueError:
             return {'message': 'Board should be an integer'}
 
+    def model_list(self):
+        """
+        :return: List of models representing the boards in the game
+        """
+        if models.boards:
+            return models.boards
+        return []
 
-class BoardList(Resource):
+
+class BoardList(controllers.BaseList):
     """
     :return:  JSON representing the board state for both players
     """
 
-    def get(self):
+    def model_list(self):
         """
-        :return: all board states
+        :return: List of models representing the boards in the game
         """
-        return models.boards
-
-    def post(self):
-        """
-        :return: just added bitboard
-        """
-        models.boards.append(0x0)
-        return models.boards[-1]
+        if models.boards:
+            return models.boards
+        return []
 
 api.add_resource(BoardList, "/")
 api.add_resource(Board, "/<int:board_id>")

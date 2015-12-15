@@ -1,6 +1,6 @@
 import api.constants as constants
 import abc
-import api.board.board as board
+import api.board.boards as board
 
 
 class Player(object):
