@@ -1,4 +1,4 @@
-import api.constants as constants
+import rest_api.constants as constants
 import abc
 
 
@@ -33,7 +33,7 @@ class Move(object):
 
     def _is_legal(self):
         """
-        Checks every board in the list to see if this move has been made already
+        Checks every boards in the list to see if this move has been made already
         :return: True if the move is a legal move. False otherwise.
         """
         for board in self.boards:

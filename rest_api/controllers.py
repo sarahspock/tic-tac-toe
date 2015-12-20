@@ -37,28 +37,31 @@ class BaseList(Resource):
     :return:  A list of all objects from this model type stored by the system.
     """
 
+
     def get(self):
         """
-        :return: all board states
+        :return: all boards states
         """
         if self.name():
             return { self.name() : self.model_list() }
         return self.model_list()
 
-    def post(self, item=0x0):
+    def post(self, *items):
         """
         :param: item: item to post
         :return: just added bitboard
         """
-        self.model_list.append(item)
-        return self.model_list[-1]
+        if items is not None:
+            for item in items:
+                self.model_list().append(item)
+        return { self.name() : self.model_list() }
 
     @abc.abstractproperty
     def model_list(self):
         """
         :return: A list of model objects that this controller is manipulating.
         """
-        return []
+        pass
 
     @abc.abstractproperty
     def name(self):

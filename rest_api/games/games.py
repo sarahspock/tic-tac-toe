@@ -1,6 +1,6 @@
-import api.constants as constants
+import rest_api.constants as constants
 import abc
-import api.players.players as players
+import rest_api.players.players as players
 import models
 
 
@@ -14,7 +14,7 @@ class Game(object):
         """
         self._x_player = players.Player()
         self._o_player = players.Player()
-        models.games.append(self)
+        models.games_list.append(self)
 
     @property
     def x_player(self):
@@ -31,3 +31,13 @@ class Game(object):
         else:
             self.o_player.turn = False
             self.x_player.turn = True
+
+    @property
+    def current_turn(self):
+        """
+        :return: The player whose turn it is.
+        """
+        if self._o_player.turn:
+            return "O"
+        else:
+            return "X"

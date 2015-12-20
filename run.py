@@ -1,7 +1,7 @@
 from werkzeug.serving import run_simple
 from werkzeug.wsgi import DispatcherMiddleware
 
-from api import app as backend
+from rest_api import app as backend
 from client import app as frontend
 
 # The API and the frontend are decoupled. This middleware combines two different

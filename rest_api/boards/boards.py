@@ -1,4 +1,4 @@
-import api.constants as constants
+import rest_api.constants as constants
 import abc
 import models
 
@@ -9,7 +9,7 @@ class Board(object):
 
     def __init__(self, game=None):
         self._bitmap = 0x0
-        models.boards.append(self)
+        models.boards_list.append(self)
         self._game = game
 
     @property
@@ -22,14 +22,14 @@ class Board(object):
         """
         :return: Boolean value, returns true if the bitboard appears to be legal.
         """
-        if self.bitmap & constants.VALID_SPACES == self.bitmap:
+        if self._bitmap & constants.VALID_SPACES == self._bitmap:
             return True
         return False
 
     @property
     def game(self):
         """
-        :return: The game associated with this board.
+        :return: The game associated with this boards.
         """
         return self._game
 

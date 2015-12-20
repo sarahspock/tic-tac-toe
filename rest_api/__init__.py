@@ -1,8 +1,8 @@
 from flask import Flask
-from api.board.controllers import board
-from api.controls.controllers import controls
-from api.games.controllers import games
-from api.players.controllers import players
+from rest_api.boards.controllers import board
+from rest_api.controls.controllers import controls
+from rest_api.games.controllers import games
+from rest_api.players.controllers import players
 import traceback
 import sys
 

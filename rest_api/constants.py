@@ -1,5 +1,5 @@
 # These are useful constants used to make the program readable, presenting useful
-# information like spaces on the board.
+# information like spaces on the boards.
 # The Board:
 # 123
 # 456

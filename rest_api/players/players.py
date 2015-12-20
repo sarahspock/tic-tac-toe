@@ -1,6 +1,6 @@
-import api.constants as constants
+import rest_api.constants as constants
 import abc
-import api.board.boards as board
+import rest_api.boards.boards as board
 
 
 class Player(object):

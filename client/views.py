@@ -38,5 +38,5 @@ class IndexView(BaseView):
         return 'games/index.html'
 
     def context(self):
-        self.game_state = requests.get("http://127.0.0.1/api/v1.0/")
+        self.game_state = requests.get("http://127.0.0.1/rest_api/v1.0/")
 
